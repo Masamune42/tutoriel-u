@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ma page de contact - {{ id }}</h1>
+    <a href="{{ path('app_main', {age : id, name: 'Alex'}) }}">Revenir vers l'accueil</a>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae debitis autem nihil libero ab, consequuntur numquam
+        cum
+        eum dolores reprehenderit, officia dolore quisquam soluta. Unde quod nemo voluptate voluptatibus quis dicta
+        doloribus dolor, dolorem sunt reiciendis maiores omnis odit repellendus. At delectus facilis blanditiis
+        voluptate ad
+        error optio, quasi consequatur.</p>
+    <a href="{{ path('app_main', {age: id, name: 'test'}) }}" class="btn btn-sm btn-primary">BOUTON</a>
+{% endblock %}
