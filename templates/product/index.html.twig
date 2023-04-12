@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Mes produits ({{ products|length }})</h1>
+
+    <div class="row mt-2">
+        {% for product in products %}
+            <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ product.price }} €</h6>
+                        <p class="card-text">{{ product.description }} </p>
+                        {% if product.isOverPrice %}
+                            <p class="text-warning">Ce produit est très cher</p>
+                        {% else %}
+                            <p class="text-warning">Le prix semble abordable</p>
+                        {% endif %}
+                        <a href="{{ path('app_product_show', {id: product.id}) }}" class="card-link">Afficher le
+                            produit</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
