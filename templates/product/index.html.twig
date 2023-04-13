@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Mes produits ({{ products|length }})</h1>
+    <h1>Mes produits ({{ products|length }}) | <a href="{{ path('app_product_new') }}" class="btn btn-sm btn-success">Créer un produit</a></h1>
 
     <div class="row mt-2">
         {% for product in products %}

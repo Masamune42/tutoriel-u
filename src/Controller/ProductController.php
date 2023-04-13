@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Form\ProductType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
@@ -19,6 +21,28 @@ class ProductController extends AbstractController
             'product/index.html.twig',
             [
                 'products' => $products
+            ]
+        );
+    }
+    #[Route('/product/new', name: 'app_product_new')]
+    public function new(Request $request, EntityManagerInterface $manager)
+    {
+        $product = new Product();
+
+        $form = $this->createForm(ProductType::class, $product);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $product->setValid(true);
+
+            $manager->persist($product);
+            $manager->flush();
+            return $this->redirectToRoute('app_product');
+        }
+
+        return $this->render(
+            'product/new.html.twig', [
+                'form' => $form->createView()
             ]
         );
     }
