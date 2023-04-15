@@ -3,6 +3,16 @@
 {% block body %}
     <h1>Mes produits ({{ products|length }}) | <a href="{{ path('app_product_new') }}" class="btn btn-sm btn-success">Créer un produit</a></h1>
 
+    {% for successMessage in app.flashes('success') %}
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-success">
+                    {{ successMessage|raw }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
     <div class="row mt-2">
         {% for product in products %}
             <div class="col-3">
