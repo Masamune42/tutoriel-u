@@ -3,11 +3,21 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route(name: 'app_')]
 class MainController extends AbstractController
 {
+    #[Route('/', name: 'app_main')]
+    public function main(Request $request)
+    {
+
+        return $this->render(
+            'main.html.twig'
+        );
+    }
+
     #[Route('/main/{name}/{age}', name: 'main')]
     public function test($name = "Alex", $age = 30)
     {

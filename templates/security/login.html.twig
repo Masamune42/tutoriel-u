@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SecurityController!{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <h1>Se connecter! ✅</h1>
+
+    {% if error %}
+        <p class="text-danger">{{ error.messageKey }}</p>
+    {% endif %}
+
+    <form action="{{ path('login') }}" method="post">
+
+        <input type="text" name="_username" value="{{ lastUsername }}" placeholder="Email de votre compte">
+        <input type="text" name="_password">
+        <button type="submit">CONNEXION</button>
+    </form>
+</div>
+{% endblock %}
