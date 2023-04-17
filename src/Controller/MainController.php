@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,11 +11,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     #[Route('/', name: 'app_main')]
-    public function main(Request $request)
+    public function main(Request $request, LoggerInterface $logger)
     {
-
+        // Nous n'avons pas besoin de créer de constructeur pour logger grâce à l'injection de dépendance
+        $logger->info('Bonjour, ceci est un message de log');
+        $logger->error('Bonjour, ceci est une erreur');
         return $this->render(
-            'main.html.twig'
+            'main.html.twig',
+            [
+                'age' => 20,
+                'name' => "Alex"
+            ]
         );
     }
 
