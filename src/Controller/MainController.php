@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Tax\Calculator;
+use Cocur\Slugify\Slugify;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,8 +13,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     #[Route('/', name: 'app_main')]
-    public function main(Request $request, LoggerInterface $logger)
+    public function main(Request $request, LoggerInterface $logger, Calculator $calculator, Slugify $slugify)
     {
+        $slugify = new Slugify();
+        dd($slugify->slugify('Bonjour à tous !'));
+        // dd($calculator->calculTTC(150));
         // Nous n'avons pas besoin de créer de constructeur pour logger grâce à l'injection de dépendance
         $logger->info('Bonjour, ceci est un message de log');
         $logger->error('Bonjour, ceci est une erreur');
